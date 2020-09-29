@@ -6,4 +6,4 @@ Mock Service Worker([MSW](https://mswjs.io/)) is a powerful tool designed to int
 
 On this demo, we'll be configuring MSW to a Create React App testing environment and reusing the same network request mock definitions for testing and development.
 
-[Read article](https://ivstudio.com/testing/how-to-mock-network-requests-with-msw)
+[Read article](https://ivstudio.com/mock-service-worker/)
