@@ -1,9 +1,11 @@
-import React from 'react';
-import { render, waitFor } from '@testing-library/react';
-import { setupServer } from 'msw/node';
-import App from './App';
-import { handlers, rest, issuesURL } from './mocks/handlers';
-const server = setupServer(...handlers);
+import rewire from "rewire"
+import React from "react"
+import { render, waitFor } from "@testing-library/react"
+import { setupServer } from "msw/node"
+import { handlers, rest, issuesURL } from "./mocks/handlers"
+const App = rewire("./App")
+const fetchIssues = App.__get__("fetchIssues")
+const server = setupServer(...handlers)
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());
@@ -46,3 +48,10 @@ test('Zero opened issues', async () => {
 		expect(getByText(/There are no open issues./i)).toBeInTheDocument();
 	});
 });
+
+// @ponicode
+describe("fetchIssues", () => {
+    test("0", async () => {
+        await fetchIssues()
+    })
+})
